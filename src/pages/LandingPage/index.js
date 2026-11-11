@@ -1,3 +1,3 @@
-import LandingPage from "./LandingPage";
+import SidebarMenu from "./SidebarMenu";
 
-export default LandingPage;
+export default SidebarMenu;

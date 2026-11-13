@@ -1,3 +1,4 @@
 .landingPage {
-  background-color: brown;
+  display: flex;
+  align-items: center;
 }

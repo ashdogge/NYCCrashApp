@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { importLibrary } from "../../scripts/GoogleMapsLoader/GoogleMapsLoader.js";
+import { importLibrary } from "../../utils/GoogleMapsLoader/GoogleMapsLoader.js";
 import styles from "./Map.module.css";
 
 const Map = () => {

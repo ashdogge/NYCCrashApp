@@ -1,3 +1,3 @@
-import Toolbar from "./Toolbar";
+import ToolbarButton from "./ToolbarButton";
 
-export default Toolbar;
+export default ToolbarButton;

@@ -1,0 +1,23 @@
+.modalBackdrop {
+  background-color: rgba(0, 0, 0, 0.562);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.modalContent {
+  display: flex;
+  flex-direction: column;
+}
+.closeButton {
+  background: none;
+  border: solid 1px rgb(172, 42, 42);
+  background: rgb(172, 42, 42);
+  border-radius: 15px;
+  font-size: 1rem;
+  color: #ccc;
+  font-weight: 300;
+  cursor: pointer;
+  z-index: 10;
+  margin-bottom: 2px;
+}

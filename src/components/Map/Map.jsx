@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { importLibrary } from "../../utils/GoogleMapsLoader/GoogleMapsLoader";
 import { getAccidentsByDate } from "../../services/accidentService";
 import styles from "./Map.module.css";
+import CrashMarker from "../CrashMarker";
 
 const NYC_CENTER = {
   lat: 40.7128,
@@ -100,14 +101,7 @@ const Map = () => {
 
       <gmp-map center={NYC_CENTER} zoom={11} map-id="DEMO_MAP_ID">
         {validAccidents.map((accident) => (
-          <gmp-advanced-marker
-            key={accident.collision_id}
-            position={{
-              lat: Number(accident.latitude),
-              lng: Number(accident.longitude),
-            }}
-            title={`Collision ${accident.collision_id}`}
-          />
+          <CrashMarker key={accident.collision_id} accident={accident} />
         ))}
       </gmp-map>
     </div>

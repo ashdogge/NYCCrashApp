@@ -1,0 +1,21 @@
+.marker {
+  width: 14px;
+  height: 14px;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px #0005;
+}
+:hover {
+  cursor: pointer;
+}
+.normal {
+  background: #2563eb;
+}
+
+.injury {
+  background: #f5930b;
+}
+
+.fatal {
+  background: #dc2626;
+}

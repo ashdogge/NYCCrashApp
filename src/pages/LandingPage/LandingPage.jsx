@@ -6,7 +6,7 @@ import DatePicker from "../../components/DatePicker/";
 
 const LandingPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [selectedDate, setSelectedDate] = useState("2023-01-03");
   const handleModalOpen = () => {
     setIsModalOpen((prev) => !prev);
   };
@@ -16,16 +16,20 @@ const LandingPage = () => {
       <h1>Landing page placeholder!</h1>
       <p>Main entry point for project!</p>
 
-      <Map />
+      <Map selectedDate={selectedDate} />
 
       <div className={styles.ToolbarContainer}>
         <Toolbar
           buttons={[
             {
-              label: "Button 1",
+              label: "Select Date",
               onClick: handleModalOpen,
               content: isModalOpen && (
-                <DatePicker onClose={() => setIsModalOpen(false)} />
+                <DatePicker
+                  selectedDate={selectedDate}
+                  onDateChange={setSelectedDate}
+                  onClose={() => setIsModalOpen(false)}
+                />
               ),
             },
             {

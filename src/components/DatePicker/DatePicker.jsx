@@ -1,6 +1,11 @@
 import styles from "./DatePicker.module.css";
 
-const DatePicker = ({ onClose, onSelect }) => {
+const DatePicker = ({ onClose, onDateChange, selectedDate }) => {
+  const handleChange = (event) => {
+    onDateChange(event.target.value);
+    onClose();
+  };
+
   return (
     // Datepicker modal component.
     <div className={styles.modalBackdrop}>
@@ -8,7 +13,12 @@ const DatePicker = ({ onClose, onSelect }) => {
         <button className={styles.closeButton} onClick={onClose}>
           &times;
         </button>
-        <input type="date" onChange={(e) => onSelect(e.target.value)} />
+        <input
+          id="crash-date"
+          type="date"
+          value={selectedDate}
+          onChange={handleChange}
+        />
       </div>
     </div>
   );

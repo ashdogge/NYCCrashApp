@@ -8,8 +8,9 @@ export default {
 export const Default = {
   args: {
     onClose: () => {},
-    onSelect: (date) => {
-      console.log("Selected date:", date);
+    onDateChange: (date) => {
+      console.log("Changed date:", date);
     },
+    selectedDate: "2023-01-03",
   },
 };

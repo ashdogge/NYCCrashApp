@@ -11,12 +11,12 @@ const NYC_CENTER = {
   lng: -74.006,
 };
 
-const Map = () => {
+const Map = ({ selectedDate }) => {
   const [mapsLoaded, setMapsLoaded] = useState(false);
   const [accidents, setAccidents] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const selectedDate = "2023-01-03";
+
   const [selectedAccident, setSelectedAccident] = useState(null);
   const mapRef = useRef(null);
   // Load Google Maps
@@ -72,7 +72,6 @@ const Map = () => {
     return () => controller.abort();
   }, [selectedDate, mapsLoaded]);
 
-  
   useEffect(() => {
     if (!mapsLoaded || !mapRef.current) return;
 

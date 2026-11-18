@@ -1,6 +1,6 @@
 import styles from "./CrashMarker.module.css";
 
-const CrashMarker = ({ accident }) => {
+const CrashMarker = ({ accident, onClick }) => {
   const injured = Number(accident.number_of_persons_injured);
   const killed = Number(accident.number_of_persons_killed);
   return (
@@ -10,6 +10,7 @@ const CrashMarker = ({ accident }) => {
         lng: Number(accident.longitude),
       }}
       title={`Collision ${accident.collision_id}`}
+      onClick={() => onClick(accident)}
     >
       <div
         className={`${styles.marker} ${killed > 0 ? styles.fatal : injured > 0 ? styles.injury : styles.normal}`}

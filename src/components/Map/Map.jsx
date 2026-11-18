@@ -1,11 +1,11 @@
 // src/components/Map/Map.jsx
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { importLibrary } from "../../utils/GoogleMapsLoader/GoogleMapsLoader";
 import { getAccidentsByDate } from "../../services/accidentService";
 import styles from "./Map.module.css";
 import CrashMarker from "../CrashMarker";
-
+import CrashModal from "../CrashModal";
 const NYC_CENTER = {
   lat: 40.7128,
   lng: -74.006,
@@ -17,6 +17,8 @@ const Map = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const selectedDate = "2023-01-03";
+  const [selectedAccident, setSelectedAccident] = useState(null);
+  const mapRef = useRef(null);
   // Load Google Maps
   useEffect(() => {
     const loadMaps = async () => {
@@ -35,7 +37,7 @@ const Map = () => {
 
   // Fetch accidents whenever the selected date changes
   useEffect(() => {
-    if (!selectedDate) {
+    if (!selectedDate || !mapsLoaded) {
       setAccidents([]);
       return;
     }
@@ -68,8 +70,15 @@ const Map = () => {
     loadAccidents();
 
     return () => controller.abort();
-  }, [selectedDate]);
+  }, [selectedDate, mapsLoaded]);
 
+  
+  useEffect(() => {
+    if (!mapsLoaded || !mapRef.current) return;
+
+    mapRef.current.center = NYC_CENTER;
+    mapRef.current.zoom = 11;
+  }, [mapsLoaded]);
   // Convert the API records into usable map coordinates
   const validAccidents = accidents.filter((accident) => {
     const lat = Number(accident.latitude);
@@ -88,10 +97,6 @@ const Map = () => {
     );
   });
 
-  if (!mapsLoaded) {
-    return <p>Loading Google Maps...</p>;
-  }
-
   return (
     <div className={styles.Map}>
       {loading && <p>Loading accidents...</p>}
@@ -99,11 +104,22 @@ const Map = () => {
 
       <p>Displaying {validAccidents.length} accident locations</p>
 
-      <gmp-map center={NYC_CENTER} zoom={11} map-id="DEMO_MAP_ID">
+      <gmp-map ref={mapRef} map-id="DEMO_MAP_ID">
         {validAccidents.map((accident) => (
-          <CrashMarker key={accident.collision_id} accident={accident} />
+          <CrashMarker
+            key={accident.collision_id}
+            accident={accident}
+            onClick={setSelectedAccident}
+          />
         ))}
       </gmp-map>
+
+      {selectedAccident && (
+        <CrashModal
+          accident={selectedAccident}
+          onClose={() => setSelectedAccident(null)}
+        />
+      )}
     </div>
   );
 };

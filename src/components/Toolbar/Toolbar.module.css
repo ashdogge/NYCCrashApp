@@ -1,6 +1,6 @@
 .toolbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 0.25rem;
   background-color: rgb(206, 206, 206);
   border-style: solid;

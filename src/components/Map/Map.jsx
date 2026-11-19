@@ -101,8 +101,6 @@ const Map = ({ selectedDate }) => {
       {loading && <p>Loading accidents...</p>}
       {error && <p>{error}</p>}
 
-      <p>Displaying {validAccidents.length} accident locations</p>
-
       <gmp-map ref={mapRef} map-id="DEMO_MAP_ID">
         {validAccidents.map((accident) => (
           <CrashMarker
@@ -112,7 +110,7 @@ const Map = ({ selectedDate }) => {
           />
         ))}
       </gmp-map>
-
+      <p>Displaying {validAccidents.length} accident locations</p>
       {selectedAccident && (
         <CrashModal
           accident={selectedAccident}

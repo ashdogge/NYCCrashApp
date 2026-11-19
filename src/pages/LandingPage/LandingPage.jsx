@@ -13,12 +13,16 @@ const LandingPage = () => {
 
   return (
     <div className={styles.landingPage}>
-      <h1>Landing page placeholder!</h1>
-      <p>Main entry point for project!</p>
-
-      <Map selectedDate={selectedDate} />
-
-      <div className={styles.ToolbarContainer}>
+      <div className={styles.row}>
+        <h1 className={styles.pageTitle}>Landing page placeholder!</h1>
+      </div>
+      <div className={styles.row}>
+        <p>Main entry point for project!</p>
+      </div>
+      <div className={styles.mapContainer}>
+        <Map selectedDate={selectedDate} />
+      </div>
+      <div className={styles.toolbarContainer}>
         <Toolbar
           buttons={[
             {

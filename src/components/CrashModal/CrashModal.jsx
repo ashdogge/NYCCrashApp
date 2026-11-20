@@ -1,10 +1,28 @@
 import styles from "./CrashModal.module.css";
+import { useEffect, useRef } from "react";
 import {
   formatDate,
   formatTime,
 } from "../../utils/DateTimeFormat/DateTimeFormat";
 
 const CrashModal = ({ accident, onClose }) => {
+  const closeButtonRef = useRef(null);
+  useEffect(() => {
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
   return (
     <div className={styles.modalBackdrop} onClick={onClose}>
       <div
@@ -15,6 +33,7 @@ const CrashModal = ({ accident, onClose }) => {
         onClick={(event) => event.stopPropagation()}
       >
         <button
+          ref={closeButtonRef}
           type="button"
           className={styles.closeButton}
           onClick={onClose}

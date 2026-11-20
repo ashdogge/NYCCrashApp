@@ -2,11 +2,18 @@ import { useState } from "react";
 import styles from "./LandingPage.module.css";
 import Map from "../../components/Map";
 import Toolbar from "../../components/Toolbar/Toolbar";
-import DatePicker from "../../components/DatePicker/";
-
+import DatePicker from "../../components/DatePicker";
+import InfoModal from "../../components/InfoModal";
+import ToolbarButton from "../../components/ToolbarButton";
+import { Button } from "storybook/internal/components";
 const LandingPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState("2023-01-03");
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+  const handleInfoModalOpen = () => {
+    setIsInfoModalOpen((prev) => !prev);
+  };
+
   const handleModalOpen = () => {
     setIsModalOpen((prev) => !prev);
   };
@@ -36,13 +43,19 @@ const LandingPage = () => {
                 />
               ),
             },
-            {
-              label: "Button 2",
-              onClick: () => console.log("Button 2 clicked"),
-            },
           ]}
         />
+        {isInfoModalOpen && (
+          <InfoModal onClose={() => setIsInfoModalOpen(false)} />
+        )}
       </div>
+      <button
+        label="Info"
+        onClick={handleInfoModalOpen}
+        className={styles.infoButton}
+      >
+        🛈
+      </button>
     </div>
   );
 };

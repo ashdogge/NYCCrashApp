@@ -3,19 +3,37 @@
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 65dvw;
+  margin: 0px;
+  border-width: 0px 2px 0px 2px;
+  border-color: rgb(202, 202, 202);
+  border-style: solid;
 }
 
 .toolbarContainer {
-  width: 90%;
+  width: 50dvw;
   flex: 1;
   margin-top: 30px;
 }
 .mapContainer {
   flex: 1;
   min-height: 0;
-  width: 90%;
+  width: 50dvw;
 }
 
 .pageTitle {
-  line-height: 2rem;
+  font-size: 6dvh;
+  line-height: 3rem;
+  margin: 0%;
+}
+
+.infoButton {
+  margin-top: 1rem;
+  background-color: rgb(35, 92, 165);
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  font-size: larger;
 }

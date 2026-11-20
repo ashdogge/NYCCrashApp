@@ -2,10 +2,12 @@
   display: flex;
   justify-content: space-evenly;
   padding: 0.25rem;
-  background-color: rgb(206, 206, 206);
+  background-color: rgb(240, 240, 240);
   border-style: solid;
   border-width: 1px;
-  border-radius: 15px;
+  border-radius: 5px;
+  border: 2px inset;
+  margin-top: 8px;
 }
 .buttonWrapper {
   position: relative;
@@ -14,7 +16,7 @@
 .dropdown {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: -15%;
   z-index: 1000;
   margin-top: 8px;
 }

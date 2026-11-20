@@ -1,0 +1,30 @@
+.infoModalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 99;
+}
+.infoModalContent {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  z-index: 100;
+  padding: 15px;
+  border-radius: 5px;
+  color: rgb(27, 27, 27);
+}
+
+.blue {
+  color: #2563eb;
+}
+.yellow {
+  color: #f5930b;
+}
+.red {
+  color: #dc2626;
+}

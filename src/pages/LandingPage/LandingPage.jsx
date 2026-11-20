@@ -8,7 +8,7 @@ import ToolbarButton from "../../components/ToolbarButton";
 import { Button } from "storybook/internal/components";
 const LandingPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState("2023-01-03");
+  const [selectedDate, setSelectedDate] = useState();
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const handleInfoModalOpen = () => {
     setIsInfoModalOpen((prev) => !prev);

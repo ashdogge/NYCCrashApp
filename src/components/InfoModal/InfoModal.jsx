@@ -23,7 +23,16 @@ const InfoModal = ({ onClose }) => {
           This map does not represent <i>all</i> motor vehicle collisions in the
           City of New York. Incidents displayed are recorded by police only in
           collisions where there is an injury, death, or where there was at
-          least $1000 worth of damage.
+          least $1000 worth of damage. For more information and methodology,
+          please see the City of New York's{" "}
+          <a
+            href="https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95/about_data"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            website
+          </a>
+          .
         </p>
         <p>
           Collisions in <span className={styles.blue}>Blue</span> are accidents

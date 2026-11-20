@@ -24,9 +24,9 @@
 }
 
 .pageTitle {
-  font-size: 6dvh;
-  line-height: 3rem;
-  margin: 0%;
+  font-size: 5dvh;
+  line-height: auto;
+  margin: 15px;
 }
 
 .infoButton {
@@ -35,5 +35,20 @@
   height: 2rem;
   width: 2rem;
   border-radius: 50%;
+  border: 1px solid rgb(0, 0, 0);
   font-size: larger;
+  color: white;
+}
+@media (max-width: 768px) {
+  .landingPage {
+    width: 90dvw;
+    padding: 5px;
+    border: none;
+  }
+  .landingPage :hover {
+    cursor: pointer;
+  }
+  .mapContainer {
+    width: 100%;
+  }
 }

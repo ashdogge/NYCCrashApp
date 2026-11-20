@@ -4,8 +4,7 @@ import Map from "../../components/Map";
 import Toolbar from "../../components/Toolbar/Toolbar";
 import DatePicker from "../../components/DatePicker";
 import InfoModal from "../../components/InfoModal";
-import ToolbarButton from "../../components/ToolbarButton";
-import { Button } from "storybook/internal/components";
+
 const LandingPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState();
@@ -21,11 +20,9 @@ const LandingPage = () => {
   return (
     <div className={styles.landingPage}>
       <div className={styles.row}>
-        <h1 className={styles.pageTitle}>Landing page placeholder!</h1>
+        <h1 className={styles.pageTitle}>NYC Crash Map</h1>
       </div>
-      <div className={styles.row}>
-        <p>Main entry point for project!</p>
-      </div>
+
       <div className={styles.mapContainer}>
         <Map selectedDate={selectedDate} />
       </div>
@@ -33,7 +30,7 @@ const LandingPage = () => {
         <Toolbar
           buttons={[
             {
-              label: "Select Date",
+              label: "Select Date ",
               onClick: handleModalOpen,
               content: isModalOpen && (
                 <DatePicker

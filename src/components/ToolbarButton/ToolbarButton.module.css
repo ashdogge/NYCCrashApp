@@ -1,11 +1,10 @@
 .button {
   padding: 0.5rem;
-  border: 2px solid rgb(56, 173, 101);
-  border-radius: 0.5rem;
-
-  background-color: rgb(60, 184, 108);
+  border: 2px solid rgb(150, 150, 150);
+  border-radius: 4px;
+  background-color: rgb(255, 255, 255);
   filter: drop-shadow(3px 2px 2px #2222223b);
-  transition: background-color 0.3s ease; /* Smooth fade */
+  transition: background-color 0.3s ease;
 }
 
 .button:hover {

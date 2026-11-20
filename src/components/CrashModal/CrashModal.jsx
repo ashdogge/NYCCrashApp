@@ -1,4 +1,8 @@
 import styles from "./CrashModal.module.css";
+import {
+  formatDate,
+  formatTime,
+} from "../../utils/DateTimeFormat/DateTimeFormat";
 
 const CrashModal = ({ accident, onClose }) => {
   return (
@@ -20,13 +24,13 @@ const CrashModal = ({ accident, onClose }) => {
         </button>
 
         <h2 id="crash-modal-title">Accident Details</h2>
-        {/* TODO: Convert date/time to readable format */}
+
         <p>
-          <strong>Date:</strong> {accident.crash_date}
+          <strong>Date:</strong> {formatDate(accident.crash_date)}
         </p>
 
         <p>
-          <strong>Time:</strong> {accident.crash_time}
+          <strong>Time:</strong> {formatTime(accident.crash_time)}
         </p>
 
         <p>

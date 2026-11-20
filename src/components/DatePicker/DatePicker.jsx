@@ -17,7 +17,7 @@ const DatePicker = ({ onClose, onDateChange, selectedDate }) => {
     <div className={styles.modalBackdrop}>
       <div className={styles.modalContent}>
         <button className={styles.closeButton} onClick={handleClose}>
-          &times;
+          ✔
         </button>
 
         <input

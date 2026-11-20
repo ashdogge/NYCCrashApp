@@ -15,8 +15,8 @@
 
 .dropdown {
   position: absolute;
-  top: 100%;
-  left: -15%;
+  top: -325%;
+  left: -45%;
   z-index: 1000;
   margin-top: 8px;
 }

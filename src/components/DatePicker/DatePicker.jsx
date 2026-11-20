@@ -1,22 +1,29 @@
+import { useState } from "react";
 import styles from "./DatePicker.module.css";
 
 const DatePicker = ({ onClose, onDateChange, selectedDate }) => {
+  const [tempDate, setTempDate] = useState(selectedDate);
+
   const handleChange = (event) => {
-    onDateChange(event.target.value);
+    setTempDate(event.target.value);
+  };
+
+  const handleClose = () => {
+    onDateChange(tempDate);
     onClose();
   };
 
   return (
-    // Datepicker modal component.
     <div className={styles.modalBackdrop}>
       <div className={styles.modalContent}>
-        <button className={styles.closeButton} onClick={onClose}>
+        <button className={styles.closeButton} onClick={handleClose}>
           &times;
         </button>
+
         <input
           id="crash-date"
           type="date"
-          value={selectedDate}
+          value={tempDate}
           onChange={handleChange}
         />
       </div>

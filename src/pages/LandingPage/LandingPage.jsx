@@ -4,6 +4,7 @@ import Map from "../../components/Map";
 import Toolbar from "../../components/Toolbar/Toolbar";
 import DatePicker from "../../components/DatePicker";
 import InfoModal from "../../components/InfoModal";
+import StatPanel from "../../components/StatPanel";
 import { Info } from "lucide-react";
 const LandingPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,6 +20,11 @@ const LandingPage = () => {
 
   return (
     <div className={styles.landingPage}>
+      <div className={styles.statPanelContainer}>
+        <StatPanel value={233} label="Total Crashes" />
+        <StatPanel value={5} label="Total Fatalities" />
+        <StatPanel value={103} label="Total Injuries" />
+      </div>
       <div className={styles.mapAndToolbarContainer}>
         <div className={styles.toolbarContainer}>
           <Toolbar

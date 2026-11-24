@@ -1,0 +1,21 @@
+.statPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 33.3%;
+  background-color: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border-color: var(--color-border);
+  padding: 15px;
+}
+
+.label {
+  padding-bottom: 15px;
+  color: var(--color-muted);
+}
+
+.value {
+  font-weight: 600;
+  font-size: 20px;
+}

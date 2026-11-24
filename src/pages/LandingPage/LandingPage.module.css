@@ -37,6 +37,12 @@
   margin: 0;
 }
 
+.statPanelContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
 @media (max-width: 768px) {
   .landingPage {
     padding: 16px;

@@ -19,30 +19,31 @@ const LandingPage = () => {
 
   return (
     <div className={styles.landingPage}>
-      <div className={styles.toolbarContainer}>
-        <Toolbar
-          buttons={[
-            {
-              label: "Select Date ",
-              onClick: handleModalOpen,
-              content: isModalOpen && (
-                <DatePicker
-                  selectedDate={selectedDate}
-                  onDateChange={setSelectedDate}
-                  onClose={() => setIsModalOpen(false)}
-                />
-              ),
-            },
-          ]}
-        />
-        {isInfoModalOpen && (
-          <InfoModal onClose={() => setIsInfoModalOpen(false)} />
-        )}
+      <div className={styles.mapAndToolbarContainer}>
+        <div className={styles.toolbarContainer}>
+          <Toolbar
+            buttons={[
+              {
+                label: "Select Date ",
+                onClick: handleModalOpen,
+                content: isModalOpen && (
+                  <DatePicker
+                    selectedDate={selectedDate}
+                    onDateChange={setSelectedDate}
+                    onClose={() => setIsModalOpen(false)}
+                  />
+                ),
+              },
+            ]}
+          />
+          {isInfoModalOpen && (
+            <InfoModal onClose={() => setIsInfoModalOpen(false)} />
+          )}
+        </div>
+        <div className={styles.mapContainer}>
+          <Map selectedDate={selectedDate} />
+        </div>
       </div>
-      <div className={styles.mapContainer}>
-        <Map selectedDate={selectedDate} />
-      </div>
-
       <button
         type="button"
         aria-label="Application information"

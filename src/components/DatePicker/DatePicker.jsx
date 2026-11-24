@@ -16,14 +16,6 @@ const DatePicker = ({ onClose, onDateChange, selectedDate }) => {
   return (
     <div className={styles.modalBackdrop}>
       <div className={styles.modalContent}>
-        <button
-          className={styles.closeButton}
-          onClick={handleClose}
-          aria-label="Apply selected date and close"
-        >
-          ✔
-        </button>
-
         <label htmlFor="crash-date">Select accident date</label>
 
         <input
@@ -32,6 +24,13 @@ const DatePicker = ({ onClose, onDateChange, selectedDate }) => {
           value={tempDate}
           onChange={handleChange}
         />
+        <button
+          className={styles.closeButton}
+          onClick={handleClose}
+          aria-label="Apply selected date and close"
+        >
+          ✔
+        </button>
       </div>
     </div>
   );

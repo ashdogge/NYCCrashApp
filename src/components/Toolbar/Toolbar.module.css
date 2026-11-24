@@ -1,13 +1,13 @@
 .toolbar {
   display: flex;
-  justify-content: space-evenly;
-  padding: 0.25rem;
-  background-color: rgb(240, 240, 240);
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 5px;
-  border: 2px inset;
-  margin-top: 8px;
+  justify-content: flex-start;
+  padding: 0.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius) var(--radius) 0 0;
+  border-bottom: none;
+  box-shadow: var(--shadow);
+  width: 100%;
 }
 .buttonWrapper {
   position: relative;
@@ -15,8 +15,7 @@
 
 .dropdown {
   position: absolute;
-  top: -325%;
-  left: -45%;
+  top: -100%;
+  left: 100%;
   z-index: 1000;
-  margin-top: 8px;
 }

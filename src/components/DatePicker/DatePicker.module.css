@@ -1,14 +1,14 @@
 .modalBackdrop {
   background-color: rgba(0, 0, 0, 0.562);
   display: flex;
-  justify-content: center;
+
   align-items: center;
   width: 100%;
   padding: 15px;
 }
 .modalContent {
   display: flex;
-  flex-direction: column;
+  width: 50%;
 }
 .closeButton {
   background: none;

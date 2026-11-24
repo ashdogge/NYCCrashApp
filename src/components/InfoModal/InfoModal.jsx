@@ -35,16 +35,14 @@ const InfoModal = ({ onClose }) => {
           .
         </p>
         <p>
-          Collisions in <span className={styles.blue}>Blue</span> are accidents
-          where no injuries or deaths are reported.
-        </p>
-        <p>
-          Collisions in <span className={styles.yellow}>Yellow</span> are
-          accidents where at least one injury is reported.
-        </p>
-        <p>
-          Collisions in <span className={styles.red}>Red</span> are accidents
-          where at least one death is reported.
+          For contact & inquiries:{" "}
+          <a
+            href="https://www.ashdev.io"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ashdev.io
+          </a>
         </p>
       </div>
     </div>

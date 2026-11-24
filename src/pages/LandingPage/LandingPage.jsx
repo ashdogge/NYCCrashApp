@@ -79,15 +79,29 @@ const LandingPage = () => {
         <div className={styles.mapContainer}>
           <Map accidents={accidents} loading={loading} error={error} />
         </div>
+        <div className={styles.infoContainer}>
+          <div className={styles.infoItem}>
+            <div className={`${styles.marker} ${styles.blue}`}></div>
+            <div>No injuries</div>
+          </div>
+          <div className={styles.infoItem}>
+            <div className={`${styles.marker} ${styles.orange}`}></div>
+            <div>At least one injury</div>
+          </div>
+          <div className={styles.infoItem}>
+            <div className={`${styles.marker} ${styles.red}`}></div>
+            <div>At least one fatality</div>
+          </div>
+          <button
+            type="button"
+            aria-label="Application information"
+            onClick={handleInfoModalOpen}
+            className={styles.infoButton}
+          >
+            <Info size={20} strokeWidth={3} />
+          </button>
+        </div>
       </div>
-      <button
-        type="button"
-        aria-label="Application information"
-        onClick={handleInfoModalOpen}
-        className={styles.infoButton}
-      >
-        <Info size={20} strokeWidth={3} />
-      </button>
     </div>
   );
 };

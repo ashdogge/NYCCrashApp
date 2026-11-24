@@ -44,16 +44,23 @@ const CrashModal = ({ accident, onClose }) => {
 
         <h2 id="crash-modal-title">Accident Details</h2>
 
-        <p>
-          <strong>Date:</strong> {formatDate(accident.crash_date)}
-        </p>
-
-        <p>
-          <strong>Time:</strong> {formatTime(accident.crash_time)}
+        <p className={styles.crashTime}>
+          <div className={styles.date}>
+            <strong>Date:</strong> {formatDate(accident.crash_date)}
+          </div>
+          <div>
+            <strong>Time:</strong> {formatTime(accident.crash_time)}
+          </div>
         </p>
 
         <p>
           <strong>Location:</strong> {accident.on_street_name || "Unknown"}
+        </p>
+        <p>
+          <strong>Vehicle 1:</strong> {accident.vehicle_type_code1 || "Unknown"}
+        </p>
+        <p>
+          <strong>Vehicle 2:</strong> {accident.vehicle_type_code2 || "Unknown"}
         </p>
       </div>
     </div>

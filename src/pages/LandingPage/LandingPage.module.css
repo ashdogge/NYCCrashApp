@@ -24,8 +24,7 @@
   min-height: 350px;
   margin-top: 0;
   border: 1px solid var(--color-border);
-  border-radius: 0 0 var(--radius) var(--radius);
-  box-shadow: var(--shadow);
+  border-width: 0px 1px 0px 1px;
   overflow: hidden;
 }
 
@@ -57,7 +56,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
+  margin-left: auto;
+  flex-shrink: 0;
   width: 40px;
   height: 40px;
 
@@ -92,4 +92,46 @@
   .infoButton {
     transition: none;
   }
+}
+
+.infoContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0 0 var(--radius) var(--radius);
+  border-bottom: none;
+  box-shadow: var(--shadow);
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.infoContainer .infoItem {
+  display: flex;
+  margin-right: 1rem;
+  flex-direction: row;
+}
+
+.infoItem div {
+  margin-right: 0.5rem;
+}
+
+.marker {
+  width: 14px;
+  height: 14px;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px #0005;
+  cursor: pointer;
+}
+.blue {
+  background-color: #2563eb;
+}
+.orange {
+  background-color: #f5930b;
+}
+.red {
+  background-color: red;
 }

@@ -5,10 +5,29 @@ import Toolbar from "../../components/Toolbar/Toolbar";
 import DatePicker from "../../components/DatePicker";
 import InfoModal from "../../components/InfoModal";
 import StatPanel from "../../components/StatPanel";
+import useAccidents from "../../hooks/useAccidents";
 import { Info } from "lucide-react";
 const LandingPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState("");
+
+  const { accidents, loading, error } = useAccidents(selectedDate);
+
+  const stats = accidents.reduce(
+    (totals, accident) => {
+      totals.crashes += 1;
+      totals.fatalities += Number(accident.number_of_persons_killed) || 0;
+      totals.injuries += Number(accident.number_of_persons_injured) || 0;
+
+      return totals;
+    },
+    {
+      crashes: 0,
+      fatalities: 0,
+      injuries: 0,
+    },
+  );
+
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const handleInfoModalOpen = () => {
     setIsInfoModalOpen((prev) => !prev);
@@ -21,9 +40,20 @@ const LandingPage = () => {
   return (
     <div className={styles.landingPage}>
       <div className={styles.statPanelContainer}>
-        <StatPanel value={233} label="Total Crashes" />
-        <StatPanel value={5} label="Total Fatalities" />
-        <StatPanel value={103} label="Total Injuries" />
+        <StatPanel
+          value={loading || error || !selectedDate ? "—" : stats.crashes}
+          label="Total Crashes"
+        />
+
+        <StatPanel
+          value={loading || error || !selectedDate ? "—" : stats.fatalities}
+          label="Total Fatalities"
+        />
+
+        <StatPanel
+          value={loading || error || !selectedDate ? "—" : stats.injuries}
+          label="Total Injuries"
+        />
       </div>
       <div className={styles.mapAndToolbarContainer}>
         <div className={styles.toolbarContainer}>
@@ -47,7 +77,7 @@ const LandingPage = () => {
           )}
         </div>
         <div className={styles.mapContainer}>
-          <Map selectedDate={selectedDate} />
+          <Map accidents={accidents} loading={loading} error={error} />
         </div>
       </div>
       <button

@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { importLibrary } from "../../utils/GoogleMapsLoader/GoogleMapsLoader";
-import { getAccidentsByDate } from "../../services/accidentService";
+
 import styles from "./Map.module.css";
-import LRUCache from "../../utils/LRUCache";
+
 import CrashMarker from "../CrashMarker";
 import CrashModal from "../CrashModal";
 const NYC_CENTER = {
@@ -12,19 +12,12 @@ const NYC_CENTER = {
   lng: -74.006,
 };
 
-const Map = ({ selectedDate }) => {
+const Map = ({ accidents, loading, error }) => {
   const [mapsLoaded, setMapsLoaded] = useState(false);
-  const [accidents, setAccidents] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   const [selectedAccident, setSelectedAccident] = useState(null);
   const mapRef = useRef(null);
-  const accidentCache = useRef(null);
 
-  if (accidentCache.current === null) {
-    accidentCache.current = new LRUCache(10);
-  }
   // Load Google Maps
   useEffect(() => {
     const loadMaps = async () => {
@@ -40,59 +33,6 @@ const Map = ({ selectedDate }) => {
 
     loadMaps();
   }, []);
-
-  useEffect(() => {
-    if (!selectedDate || !mapsLoaded) {
-      setAccidents([]);
-      return;
-    }
-
-    // Check the LRU cache
-    const cachedData = accidentCache.current.get(selectedDate);
-
-    if (cachedData !== undefined) {
-      console.log(`Cache HIT: ${selectedDate}`);
-
-      setAccidents(cachedData);
-      setLoading(false);
-      setError(null);
-      return;
-    }
-
-    console.log(`Cache MISS: ${selectedDate}`);
-
-    const controller = new AbortController();
-
-    const loadAccidents = async () => {
-      setLoading(true);
-      setError(null);
-      setAccidents([]);
-
-      try {
-        const data = await getAccidentsByDate(selectedDate, controller.signal);
-
-        if (!controller.signal.aborted) {
-          // Save the data in the LRU cache
-          accidentCache.current.set(selectedDate, data);
-
-          setAccidents(data);
-        }
-      } catch (error) {
-        if (!controller.signal.aborted) {
-          console.error(error);
-          setError("Failed to load accidents");
-        }
-      } finally {
-        if (!controller.signal.aborted) {
-          setLoading(false);
-        }
-      }
-    };
-
-    loadAccidents();
-
-    return () => controller.abort();
-  }, [selectedDate, mapsLoaded]);
 
   useEffect(() => {
     if (!mapsLoaded || !mapRef.current) return;

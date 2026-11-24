@@ -31,3 +31,13 @@
   box-shadow: var(--shadow);
   padding: 1rem;
 }
+.selectedDate {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  padding: 0 0.5rem;
+}

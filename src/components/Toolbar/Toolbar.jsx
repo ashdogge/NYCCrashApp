@@ -1,6 +1,8 @@
 import styles from "./Toolbar.module.css";
 import ToolbarButton from "../ToolbarButton";
-const Toolbar = ({ buttons }) => {
+import { formatDate } from "../../utils/DateTimeFormat/DateTimeFormat";
+
+const Toolbar = ({ buttons, selectedDate }) => {
   return (
     <div className={styles.toolbar}>
       {buttons.map((button, index) => (
@@ -11,6 +13,10 @@ const Toolbar = ({ buttons }) => {
           )}
         </div>
       ))}
+
+      <div className={styles.selectedDate}>
+        {selectedDate ? formatDate(selectedDate) : "No date selected"}
+      </div>
     </div>
   );
 };

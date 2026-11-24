@@ -44,20 +44,19 @@ const LandingPage = () => {
           value={loading || error || !selectedDate ? "—" : stats.crashes}
           label="Total Crashes"
         />
-
-        <StatPanel
-          value={loading || error || !selectedDate ? "—" : stats.fatalities}
-          label="Total Fatalities"
-        />
-
         <StatPanel
           value={loading || error || !selectedDate ? "—" : stats.injuries}
           label="Total Injuries"
+        />{" "}
+        <StatPanel
+          value={loading || error || !selectedDate ? "—" : stats.fatalities}
+          label="Total Fatalities"
         />
       </div>
       <div className={styles.mapAndToolbarContainer}>
         <div className={styles.toolbarContainer}>
           <Toolbar
+            selectedDate={selectedDate}
             buttons={[
               {
                 label: "Select Date ",

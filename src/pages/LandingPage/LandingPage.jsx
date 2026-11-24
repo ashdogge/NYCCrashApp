@@ -4,10 +4,10 @@ import Map from "../../components/Map";
 import Toolbar from "../../components/Toolbar/Toolbar";
 import DatePicker from "../../components/DatePicker";
 import InfoModal from "../../components/InfoModal";
-
+import { Info } from "lucide-react";
 const LandingPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState();
+  const [selectedDate, setSelectedDate] = useState("");
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const handleInfoModalOpen = () => {
     setIsInfoModalOpen((prev) => !prev);
@@ -19,13 +19,6 @@ const LandingPage = () => {
 
   return (
     <div className={styles.landingPage}>
-      <div className={styles.row}>
-        <h1 className={styles.pageTitle}>NYC Crash Map</h1>
-      </div>
-
-      <div className={styles.mapContainer}>
-        <Map selectedDate={selectedDate} />
-      </div>
       <div className={styles.toolbarContainer}>
         <Toolbar
           buttons={[
@@ -46,12 +39,17 @@ const LandingPage = () => {
           <InfoModal onClose={() => setIsInfoModalOpen(false)} />
         )}
       </div>
+      <div className={styles.mapContainer}>
+        <Map selectedDate={selectedDate} />
+      </div>
+
       <button
-        label="Info"
+        type="button"
+        aria-label="Application information"
         onClick={handleInfoModalOpen}
         className={styles.infoButton}
       >
-        🛈
+        <Info size={20} strokeWidth={3} />
       </button>
     </div>
   );

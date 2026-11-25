@@ -1,4 +1,3 @@
-import react from "react";
 import StatPanel from "./StatPanel";
 
 export default {
@@ -12,14 +11,14 @@ export const Default = {
   },
 };
 
-export const injuries = {
+export const Injuries = {
   args: {
     value: 103,
     label: "Injuries",
   },
 };
 
-export const fatalities = {
+export const Fatalities = {
   args: {
     value: 5,
     label: "Fatalities",

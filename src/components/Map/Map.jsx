@@ -14,7 +14,7 @@ const NYC_CENTER = {
 
 const Map = ({ accidents, loading, error }) => {
   const [mapsLoaded, setMapsLoaded] = useState(false);
-
+  const [mapError, setMapError] = useState(null);
   const [selectedAccident, setSelectedAccident] = useState(null);
   const mapRef = useRef(null);
 
@@ -27,7 +27,7 @@ const Map = ({ accidents, loading, error }) => {
         setMapsLoaded(true);
       } catch (error) {
         console.error("Failed to load Google Maps:", error);
-        setError("Failed to load Google Maps");
+        setMapError("Failed to load Google Maps");
       }
     };
 
@@ -61,9 +61,10 @@ const Map = ({ accidents, loading, error }) => {
   return (
     <div className={styles.Map}>
       {loading && <p>Loading accidents...</p>}
-      {error && <p>{error}</p>}
+      {error && <p role="alert">{error}</p>}
+      {mapError && <p role="alert">{mapError}</p>}
 
-      <gmp-map ref={mapRef} map-id="DEMO_MAP_ID">
+      <gmp-map ref={mapRef} map-id={import.meta.env.VITE_GOOGLE_MAPS_MAP_ID}>
         {validAccidents.map((accident) => (
           <CrashMarker
             key={accident.collision_id}

@@ -1,4 +1,3 @@
-import react from "react";
 import CrashMarker from "./CrashMarker";
 
 export default {

@@ -3,9 +3,7 @@ import { getAccidentsByDate } from "../services/accidentService";
 import LRUCache from "../utils/LRUCache";
 
 const useAccidents = (selectedDate) => {
-  const [accidents, setAccidents] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [result, setResult] = useState(null);
 
   const accidentCache = useRef(null);
 
@@ -14,52 +12,58 @@ const useAccidents = (selectedDate) => {
   }
 
   useEffect(() => {
-    setError(null);
-
-    if (!selectedDate) {
-      setAccidents([]);
-      setLoading(false);
-      return;
-    }
-
-    const cached = accidentCache.current.get(selectedDate);
-
-    if (cached !== undefined) {
-      setAccidents(cached);
-      setLoading(false);
-      return;
-    }
+    if (!selectedDate) return;
 
     const controller = new AbortController();
 
-    setLoading(true);
-    setAccidents([]);
-
-    const fetchAccidents = async () => {
+    const loadAccidents = async () => {
       try {
-        const data = await getAccidentsByDate(selectedDate, controller.signal);
+        const cached = accidentCache.current.get(selectedDate);
+
+        const data =
+          cached !== undefined
+            ? cached
+            : await getAccidentsByDate(selectedDate, controller.signal);
 
         if (controller.signal.aborted) return;
 
-        accidentCache.current.set(selectedDate, data);
-        setAccidents(data);
-      } catch (err) {
-        if (!controller.signal.aborted) {
-          setError(err.message);
+        if (cached === undefined) {
+          accidentCache.current.set(selectedDate, data);
         }
-      } finally {
-        if (!controller.signal.aborted) {
-          setLoading(false);
-        }
+
+        setResult({
+          date: selectedDate,
+          accidents: data,
+          error: null,
+        });
+      } catch (error) {
+        if (controller.signal.aborted) return;
+
+        setResult({
+          date: selectedDate,
+          accidents: [],
+          error: error.message,
+        });
       }
     };
 
-    fetchAccidents();
+    Promise.resolve().then(() => {
+      if (!controller.signal.aborted) {
+        return loadAccidents();
+      }
+    });
 
     return () => controller.abort();
   }, [selectedDate]);
 
-  return { accidents, loading, error };
+  const currentResult =
+    selectedDate && result?.date === selectedDate ? result : null;
+
+  return {
+    accidents: currentResult?.accidents ?? [],
+    loading: Boolean(selectedDate && !currentResult),
+    error: currentResult?.error ?? null,
+  };
 };
 
 export default useAccidents;

@@ -1,4 +1,3 @@
-import react from "react";
 import DatePicker from "./DatePicker";
 
 export default {

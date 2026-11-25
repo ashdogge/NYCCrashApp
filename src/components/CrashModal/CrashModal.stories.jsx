@@ -1,4 +1,3 @@
-import react from "react";
 import CrashModal from "./CrashModal";
 
 export default {

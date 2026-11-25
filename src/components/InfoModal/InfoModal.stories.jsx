@@ -1,4 +1,3 @@
-import react from "react";
 import InfoModal from "./InfoModal";
 
 export default {

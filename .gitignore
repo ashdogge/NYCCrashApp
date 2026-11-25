@@ -28,3 +28,5 @@ storybook-static
 
 .env
 .env.*
+# Vercel local configuration
+.vercel/

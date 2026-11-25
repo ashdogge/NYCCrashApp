@@ -3,7 +3,7 @@ import styles from "./DatePicker.module.css";
 
 const DatePicker = ({ onClose, onDateChange, selectedDate }) => {
   const [tempDate, setTempDate] = useState(selectedDate ?? "");
-
+  const today = new Date().toLocaleDateString("en-CA");
   const handleChange = (event) => {
     setTempDate(event.target.value);
   };
@@ -21,6 +21,8 @@ const DatePicker = ({ onClose, onDateChange, selectedDate }) => {
         <input
           id="crash-date"
           type="date"
+          min="2014-01-01"
+          max={today}
           value={tempDate}
           onChange={handleChange}
         />

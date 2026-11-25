@@ -73,7 +73,7 @@ const Map = ({ accidents, loading, error }) => {
           />
         ))}
       </gmp-map>
-      <p>Displaying {validAccidents.length} accident locations</p>
+
       {selectedAccident && (
         <CrashModal
           accident={selectedAccident}
